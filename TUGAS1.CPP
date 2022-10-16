@@ -1,25 +1,25 @@
-/* Contoh Program ke : 1 */
-/* Program : struktur data statis mahasiswa */
 #include <conio.h>
 #include <stdio.h>
 #include <iostream>
 #include <string.h>
-#define nmax 5 // banyak data yang dapat ditampung
+#define nmax 5 
 using namespace std;
 
-int n = 0; // variable n sebagai banyak data yang telah tersimpan
+int n = 0;
 struct data
-{ // struktur data mahasiswa yg akan diinput
+{
 
     int nim;
     char nama[20];
     char kom;
 };
-struct data maba[nmax]; // deklarasi variabel bertipe struct
-void tambah_data();     // prototype fungsi void
+struct data maba[nmax]; 
+void tambah_data();     
 void hapus_data();
 void tampilkan_data();
-main()
+void edit_data();
+
+int main()
 {
     int pil;
 menu:
@@ -27,9 +27,13 @@ menu:
     cout << "1. tambah data\n";
     cout << "2. hapus data \n";
     cout << "3. tampilkan data \n";
-    cout << "4. keluar \n";
-    cout << "\n Pilih menu (1/2/3/4) ? ";
+    cout << "4. edit data \n";
+    cout << "5. keluar \n";
+    cout << "\n Pilih menu (1/2/3/4/5) ? ";
     cin >> pil;
+    
+	system("CLS");
+    
     if (pil == 1)
         tambah_data();
     else if (pil == 2)
@@ -37,6 +41,8 @@ menu:
     else if (pil == 3)
         tampilkan_data();
     else if (pil == 4)
+        edit_data();
+    else if (pil == 5)
         exit(1); // atau bisa pakai return(0)
     else
     {
@@ -93,7 +99,20 @@ void tampilkan_data()
             cout << "\nNama : " << maba[i].nama;
             cout << "\nNIM : " << maba[i].nim;
             cout << "\nKom : " << maba[i].kom;
+            cout << "\n\n";
             cout << endl;
         }
     }
+}
+   void edit_data()
+{
+    int i;
+    cout << "Data keberapa yang ingin anda edit = "; cin >> i;
+        if ((n-i)>=0 && (i-1>=0)) {
+    cout << "Nama : "; cin >> maba[i-1].nama;
+    cout << "NIM  : "; cin >> maba[i-1].nim;
+    cout << "Kom  : "; cin >> maba[i-1].kom;   
+        }
+    else
+    cout << "\n Data yang anda pilih tidak tersedia \n";
 }
